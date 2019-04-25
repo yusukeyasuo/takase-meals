@@ -1,0 +1,2 @@
+class MealSendOrder < ApplicationRecord
+end

@@ -1,0 +1,21 @@
+bundle update
+bundle install
+rails g controller Ordering index edit update delete
+rails g controller calendar index
+rails g model meal_send_orders
+
+
+課題：やりたいことを見つける、そして、見つけたら仕様書作成
+　　　　今回のソースの理解
+　　　　実際書いてみてエラーを解決する技術を得る
+次回 　12/21 10:00～
+
+
+
+こんにちは、インストラクターの大原です。
+5分ほど前になりましたのでご連絡を差し上げました。
+本日もよろしくおねがいします
+
+○○時からの生徒でskypeに応答がありません。確認お願いできますか？
+
+10時からの生徒(笠井さん)でskypeに応答がありません。確認お願いできますか？

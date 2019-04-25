@@ -1,0 +1,195 @@
+<body>
+  <link rel="stylesheet" href="http://school.oohara.jp/takase/datepicker.css" />
+    <span class="title">食数管理（編集）
+    <br>
+    <!-- contorollerの@date4が展開される-->
+    <%= @date4 %></span>
+    <br>
+    <a href="http://localhost:3000/calendar/index"><span class="back">カレンダーへ戻る</span></a>
+    <br><br><br><br>
+    <table style="width:100%">
+        <tr>
+            <th nowrap style="width:15%">
+                所属
+            </th>
+            <th nowrap style="width:15%">
+                班
+            </th>
+            <th nowrap style="width:10%">
+                メンバー
+            </th>
+            <th nowrap style="width:10%">
+                スタッフ
+            </th>
+            <th nowrap style="width:10%">
+                その他
+            </th>
+            <th nowrap style="width:10%">
+                小サイズ
+            </th>
+            <th nowrap style="width:30%">
+                備考
+            </th>
+        </tr>
+        <% #form submitを押したら、action update飛ぶ
+         %>
+        <%= form_for(:data,:url => {:action => :update} )  do |f| %>
+        <!-- orderdataをeach文で表示している-->
+        <% @orderdata.each {|item| %>
+        <%= f.hidden_field :year, :value=>@date1 %>
+        <% #マイナスなしの年月日がyearに入る
+         %>
+        <%= f.hidden_field :date, :value=>@date %>
+        <% #マイナスありの年月日がyearに入る
+         %>
+        <%= f.hidden_field :id, :value=>item.id %>
+        <% #each文をさらに細かくしている 44～66
+         %>
+        <%= fields_for "items[]", item do |fi| %>
+        <%= fi.hidden_field :year %>
+        <tr>
+            <td>
+                <%= fi.text_field :name,:value=>item.name, :style=>"width:240px" %>
+            </td>
+            <td>
+                <%= fi.text_field :group,:value=>item.group, :style=>"width:240px" %>
+            </td>
+            <td>
+                <%= fi.text_field :member,:value=>item.member, :style=>"width:150px" %>
+            </td>
+            <td>
+                <%= fi.text_field :staff,:value=>item.staff, :style=>"width:150px" %>
+            </td>
+            <td>
+                <%= fi.text_field :other,:value=>item.other, :style=>"width:150px" %>
+            </td>
+            <td>
+                <%= fi.text_field :small_size,:value=>item.small_size ,:style=>"width:150px" %>
+            </td>
+            <td>
+                <%= fi.text_area :remarks, :style=>"width:450px"%>
+            </td>
+        </tr>
+        <% end %>
+
+        <% } %>
+
+    </table>
+    <table>
+        <tr>
+            <td>
+               <span style="background-color:#f0ad4e">期間登録</span>
+               <% #fのチェックボックス
+                %>
+               <%= f.check_box 'kikan' %>
+            </td>
+        </tr>
+        <tr>
+            <td nowrap>
+                <span id="start" name="start"></span> <img class="cal1" src="http://school.oohara.jp/takase/cal.png"> ～ <span id="end" name="end"></span>&nbsp;<img class="cal2" src="http://school.oohara.jp/takase/cal.png">
+                <%=f.hidden_field :start,:id=>"start_h" %>
+                <%=f.hidden_field :end, :id=>"end_h" %>
+            </td>
+      </tr>
+      </tr>
+            <td nowrap>
+            毎日
+            <%= f.check_box 'day' %>　毎週 <%= f.check_box 'syu',{:id=>"syu",:onchange=>"week();"} %>　隔週 <%= f.check_box 'syu1',{:id=>"syu1",:onchange=>"week1();"} %>
+            </td>
+      </tr>
+      </tr>
+            <td nowrap><br>
+            <div id="week" style="display:none">
+          月<%= f.check_box 'getu' %>火<%= f.check_box 'ka' %>水<%= f.check_box 'sui' %>
+          木<%= f.check_box 'moku' %>金<%= f.check_box 'kin' %>土<%= f.check_box 'do' %>
+          日<%= f.check_box 'nichi' %>
+          </div>
+            </td>
+        </tr>
+      </table>
+
+    <!-- Jquery -->
+  <script src="http://school.oohara.jp/takase/jquery-3.3.1.js"></script>
+  <!-- detepicker -->
+    <script src="http://school.oohara.jp/takase/datepicker.js"></script>
+  <!-- このページのjavascript -->
+  <script>
+    // 2桁の数字にする
+    var zero = function(str) {
+      str += '';
+      while (str.length < 2) {
+        str = '0' + str;
+      }
+      return str;
+    }
+
+        //初期日付
+      var start=new Date();
+      document.getElementById("start").innerHTML=
+      start.getFullYear() + "年" + zero(start.getMonth() +1) + "月"
+      + zero(start.getDate()) + "日";
+      document.getElementById("start_h").value=
+      start.getFullYear() + "-" + zero(start.getMonth() +1) + "-"
+      + zero(start.getDate());
+
+      var end=new Date();
+      document.getElementById("end").innerHTML=
+      end.getFullYear() + "年" + zero(end.getMonth() +1) + "月"
+      + zero(end.getDate()) + "日";
+      document.getElementById("end_h").value=
+      end.getFullYear() + "-" + zero(end.getMonth() +1) + "-"
+      + zero(end.getDate());
+
+
+        //カレンダー　DatePicker
+      $(".cal1").gDatePicker({
+        //表示形式
+        date_format : 'Y年m月d日',
+        //カレンダー開くとき
+        onOpen:function(dp){
+        return $("#start",dp.parent()).html();
+        },
+      //カレンダー選択後
+        onSelect:function(v,year,month,day,dp){
+        document.getElementById("start_h").value=year + "-" + month + "-" + day;
+          $("#start",dp.parent()).html(v);
+        }
+      });
+      $(".cal2").gDatePicker({
+        //表示形式
+            date_format : 'Y年m月d日',
+        //カレンダー開くとき
+        onOpen:function(dp){
+        return $("#end",dp.parent()).html();
+        },
+      //カレンダー選択後
+        onSelect:function(v,year,month,day,dp){
+        document.getElementById("end_h").value=year + "-" + month + "-" + day;
+          $("#end",dp.parent()).html(v);
+        }
+      });
+
+    //曜日を出すかどうか
+    function week(){
+      if(document.getElementById("syu").checked){
+            document.getElementById("week").style.display="";
+        }else{
+            document.getElementById("week").style.display="none";
+      }
+    }
+
+    function week1(){
+      if(document.getElementById("syu1").checked){
+            document.getElementById("week").style.display="";
+        }else{
+            document.getElementById("week").style.display="none";
+      }
+    }
+
+  </script>
+
+  <div style="text-align:right; position:absolute; right:10px; bottom:20px;">
+   <%= f.submit "登録" %>
+  </div>
+<% end %>
+  </body>

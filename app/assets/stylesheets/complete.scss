@@ -1,0 +1,22 @@
+// Place all the styles related to the complete controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  background-image: url(https://school.oohara.jp/takase/lunchbox.jpg);
+  /*縦横比は保持して、背景領域を完全に覆う最小サイズになるように背景画像を拡大縮小する*/
+  background-size: cover;
+  color: #333333;
+}
+
+.title {
+  font-size: 35px;
+  font-weight: bold;
+  border-bottom:solid;
+  border-width:1px;
+  border-color: #545454;
+}
+
+.back {
+  font-size: 25px;
+}

@@ -1,0 +1,37 @@
+<body>
+    <span class="title"> 新規追加</span>
+    <br>
+     <a href="http://localhost:3000/calendar/index"><span class="back">カレンダーへ戻る</span></a>
+    <br><br><br><br>
+    <%= form_for(:data,:url => {:action => :update} )  do |f| %>
+    <%= f.hidden_field :d,:value=>@d %>
+    <table id="a">
+      <tr>
+        <td>所属</td>
+        <td>班</td>
+      </tr>
+      <tr>
+        <td><input type="text" name="data[name0]"></td>
+        <td><input type="text" name="data[group0]"></td>
+      </tr>
+    </table>
+    <input type = "button" value = "行追加" onclick = "tuika()" >
+    <div style="position:fixed;bottom:30px;right:30px;">
+    <%= f.submit "登録" %>
+    </div>
+
+    <% end %>
+  </body>
+
+  <script>
+  var a = 1;
+  function tuika(){
+        var line = document.getElementById("a");
+        var low = line.insertRow(-1);
+        var c1 = low.insertCell(-1);
+        var c2 = low.insertCell(-1);
+        c1.innerHTML = "<input type=\"text\" name=\"data[name"+a+"]\">";
+        c2.innerHTML = "<input type=\"text\" name=\"data[group"+a+"]\">";
+        a++;
+      }
+  </script>

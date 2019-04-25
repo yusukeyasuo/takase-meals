@@ -1,0 +1,77 @@
+// Place all the styles related to the loginafter controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* スクエアボタン１のCSS */
+.square_btn1 {
+  /*横並びで、中身は縦並び*/
+    display: inline;
+  /*余白を指定*/
+    padding: 1.8em 1.5em;
+  /*文字の装飾をしない*/
+    text-decoration: none;
+  /*文字の色を指定*/
+    color: rgba(255, 255, 255, 0.6);
+  /*１本線で表示*/
+    border: solid 2px rgba(255, 255, 255, 0.6);
+   /*角を丸くする*/
+    border-radius: 20px;
+  /*変化をつける*/
+    transition: .4s;
+  /*外左余白の指定*/
+    margin-left: 450px;
+  /*外右余白の指定*/
+    margin-right: 180px;
+  /*画面の決まった位置に固定*/
+    position: fixed;
+    width: 224px;
+    height:  100px;
+    font-size: 20px;
+}
+
+/*カーソルが乗っている要素にスタイルを適用する*/
+.square_btn1:hover {
+ /*背景画像の色を指定*/
+    background:#f0ad4e;
+ /*文字の色を指定*/
+    color: white;
+}
+
+/* スクエアボタン２のCSS */
+.square_btn2 {
+   /*横並びで、中身は縦並び*/
+　　display: inline-block;
+    /*余白を指定*/
+    padding: 1.8em 1.5em;
+    /*文字の装飾をしない*/
+    text-decoration: none;
+    /*文字の色を指定*/
+    color: rgba(255, 255, 255, 0.6);
+    /*１本線で表示*/
+    border: solid 2px rgba(255, 255, 255, 0.6);
+    /*角を丸くする*/
+    border-radius: 20px;
+    /*変化をつける*/
+    transition: .4s;
+    /*外左余白の指定*/
+    margin-left: 1000px;
+    /*画面の決まった位置に固定*/
+    position: fixed;
+    width: 224px;
+    height:  100px;
+    font-size: 20px;
+}
+
+/*カーソルが乗っている要素にスタイルを適用する*/
+.square_btn2:hover {
+   /*背景画像の色を指定*/
+    background: #d9534f;
+   /*文字の色を指定*/
+    color: white;
+}
+
+body {
+  background-image: url(https://school.oohara.jp/takase/lunchbox.jpg);
+  /*縦横比は保持して、背景領域を完全に覆う最小サイズになるように背景画像を拡大縮小する*/
+  background-size: cover;
+}

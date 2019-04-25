@@ -1,0 +1,48 @@
+// Place all the styles related to the login controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.bg-slider {
+	width: 100vw;
+	height: 100vh;
+	background-position:center center;
+	background-size: cover;
+	align-items: center;
+	justify-content: center;
+}
+
+.container-fluid {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+ .btn-warning {
+  border-radius: 7px;
+  width: 125px;
+  height:  55px;
+}
+
+input[type ="text"] {
+  border-radius: 7px;
+  width: 500px;
+  height:  50px;
+  font-size: 20px;
+}
+
+input[type ="password"] {
+  border-radius: 7px;
+  width: 500px;
+  height:  50px;
+  font-size: 20px;
+}
+
+.forget {
+  font-size: 20px;
+}
+
+input[placeholder] {
+  font-size: 17px;
+}
+
+.log {
+  font-size: 17px;
+}

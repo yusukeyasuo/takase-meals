@@ -1,0 +1,24 @@
+<body>
+   <!-- 表示領域の幅全体に表示する -->
+  <div class = "container-fluid">
+    <!-- 上部余白のため改行 -->
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <!-- リンク先の指定、スクエアボタン１、２というクラスを付与 -->
+    <div class="square_btn1">
+    <%= link_to "食数管理（発注）", controller: "calendar", action: "index" %>
+    </div>
+<div class="square_btn2">
+    <%= link_to "食数管理（受注）", controller: "calendar", action: "index" %>
+  </div>
+
+  <p class="lunchbox" style="position:fixed;left:0;top:0;">
+   <img src="" alt="">
+  </p>
+
+  <!-- BootstrapCDNの組み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- BootstrapCDNの組み込み -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+ </body>
+

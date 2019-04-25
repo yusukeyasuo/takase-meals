@@ -1,0 +1,115 @@
+<div style="position:fixed;right:0;top:0;text-align:right">
+<span style="color: red;text-decoration:underline;font-size:25px;"><b>※時間厳守(午前9時まで登録可）</b></span><br>
+<!--もし管理者権限があった場合「1」なかった場合「0」 「1」だった場合は5行6行実行、-->
+<% if cookies[:admin] == "1" %>
+<input type="button" value="編集" onclick="location.href='/orderedit/index?d=<%= @date2 %>'">
+<input type="button" value="削除" onclick="del();">
+<% end %>
+</div>
+<table>
+<tr>
+<td>
+<table style="">
+ <tr>
+  <td>
+    <span class=title>食数管理（発注累計）<br>
+     <!-- contorollerの@dateが展開される-->
+     <%= @date %></span>
+     <br>
+     <a href="http://localhost:3000/calendar/index"><span class="back">カレンダーへ戻る</span></a>
+  </td>
+ </tr>
+ <tr>
+  <td style="height:100px">
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <table>
+    <tr>
+      <th>
+        所属
+      </th>
+      <th>
+
+      </th>
+      <th>
+        発注累計（大）
+      </th>
+      <th>
+        発注累計（小）
+      </th>
+    </tr>
+
+<!-- 部署、大サイズ、小サイズをeach文で表示している-->
+<% @cnt = 0 %>
+    <% @orderdata.each do |item| %>
+    <tr>
+     <td>
+      <%= item.name %>
+      <input type="hidden" value="<%= item.name %>" id="nm<%=@cnt %>">
+     </td>
+     <td>
+      <input type="checkbox" id="chk<%=@cnt %>" >
+  　 </td>
+     <td>
+      <input type="text" value="<%= item.large_size %>">　
+     </td>
+     <td>
+      <input type="text" value="<%= item.small_size %>">
+     </td>
+    </tr>
+
+    <% @cnt += 1
+    end %>
+
+   </table>
+  </td>
+ </tr>
+</table>
+<table>
+ <tr>
+  <td style="width:85%">
+  </td>
+  <td style="width:15%">
+  </td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+<div style="text-align:right; position:absolute; right:10px; bottom:20px;">
+<% if cookies[:admin] == "1" %>
+ <input type="button" value="追加" onclick="location.href='/ordernew/index?d=<%= @date2 %>'">
+<% end %>
+
+<script>
+//削除する前の処理//
+function del(){
+  if(window.confirm('選択された<%= @date %>の所属のデータを削除します。よろしいですか？')){
+	var cnt = 0;
+	var q="?";
+  //繰り返し処理//
+	for(;;cnt++){
+    //chk「0」があるかをみる//
+	  if(document.getElementById("chk"+cnt)){
+      //あれば次の以下の処理へ移りチェックされているかどうかをみる。チェックされたらif文に入る//
+	    if(document.getElementById("chk"+cnt).checked){
+        //chkとnmの値をvar i n に入れる//
+		    var i = document.getElementById("chk"+cnt);
+		    var n = document.getElementById("nm"+cnt).value;
+        //qという変数に対して、q0=部署名　＆で繋げている//
+		    q = q + "q" + cnt + "=" + n + "&";
+        }
+    //for文のチェックがなければelseへいく//
+	  }else{
+     //breakでfor文、終了//
+	    break;
+	  }
+    }
+   //order/deleteへ遷移する、その際/q + d をつけて遷移/
+   location.href="/order/delete/"+ q + "d=<%= @date2 %>";
+  }
+}
+</script>
+</div>

@@ -1,0 +1,49 @@
+<body>
+
+<div id="container">
+  <div id="content2">
+    <span class="title">パスワードの再設定</span>
+   <div class="reminder">
+    <h3>
+パスワードの再設定を行います。<br>
+以下のメールアドレス入力欄に、送信可能なメールアドレスをご入力の上、【送信】をクリックしてください。<br>
+メールアドレスの確認後、そのメールアドレス宛に、パスワード再設定用メールが自動送信されます。
+   </h3><br><br><br>
+
+<div class="myasp_reminder">
+<%= form_tag("/passwordresend/sousin", :multipart => true, :id=>"AffiliatorReminderForm") do %>
+<div style="display:none;">
+<input type="hidden" name="_method" value="POST"/>
+</div>
+<div class="input text">
+<label for="UserMail1">
+</label>
+<input name="form" class="email_trim" size="40" type="text" id="UserMail1" placeholder="メールアドレス"/>
+</div>
+<div class="input text">
+<label for="UserMail2">
+</label>
+<input name="form2" class="email_trim" size="40" type="text" id="UserMail2" placeholder="メールアドレス（確認用）"/>
+</div>
+<div class="false">
+<input type="submit" value="送信" onsubmit="check();">
+</div>
+<input type="hidden" name="data[Pages][pages_action]" value="1" id="PagesPagesAction"/>
+<% end %>
+</div>
+
+
+    </div>
+  </div>
+</div>
+
+<script>
+function check(){ // パスワードチェック
+
+
+return true;
+}
+
+</script>
+
+</body>

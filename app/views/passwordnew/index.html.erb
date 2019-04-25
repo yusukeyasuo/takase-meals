@@ -1,0 +1,38 @@
+<body>
+
+  <div id="container">
+
+    <div id="content2">
+      <span class="title">パスワード再設定</span>
+      <br>
+      <h3>
+新しいパスワードを設定してください。
+      </h3>
+      <br><br><br>
+
+<div class="myasp_updatepwd">
+<%= form_tag("/login/index", :multipart => true, :id=>"AffiliatorUpdatepwdForm") do %>
+<div style="display:none;">
+<input type="hidden" name="_method" value="POST"/>
+</div>
+<input type="hidden" name="data[Pages][pages_action]" value="1" id="PagesPagesAction"/>
+<input type="hidden" name="data[Updatepwd][id]" value="Jui6UI0Z" id="UpdatepwdId"/>
+<div class="input password">
+<label for="UpdatepwdNewpassword1"></label>
+<input name="data[Updatepwd][newpassword1]" class="string_trim" size="40" type="password" id="UpdatepwdNewpassword1"placeholder="新しいパスワード"/>
+</div>
+<div class="input password">
+<label for="UpdatepwdNewpassword2">
+</label>
+<input name="data[Updatepwd][newpassword2]" class="string_trim" size="40" type="password" id="UpdatepwdNewpassword2"placeholder="新しいパスワード(確認用)"/>
+</div>
+<div class="false">
+<input  name="Submit[save]" type="submit" value="パスワード再設定"/ onclick="location.href='/login/index'">
+</div>
+<% end %>
+</div>
+
+    </div>
+  </div>
+
+</body>
